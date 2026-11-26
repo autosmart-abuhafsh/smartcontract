@@ -1,0 +1,6 @@
+{
+  "name": "SmartBuild 3.0",
+  "description": "Platform Pengelolaan Proyek Konstruksi Digital, Kontrak Pintar, BIM 3D, dan Escrow Bertahap dengan Multi-Role RBAC & MFA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,1262 @@
+# PRODUCT REQUIREMENTS DOCUMENT (PRD)
+# SMARTBUILD VERSION 3.0
+
+## DIGITAL CONSTRUCTION MANAGEMENT, BIM & SMART CONTRACT PLATFORM
+
+---
+
+# BAGIAN 1 — VISI DAN TUJUAN APLIKASI
+
+## 1.1 Gambaran Umum
+
+Bangun aplikasi web profesional bernama SMARTBUILD.
+
+SmartBuild merupakan platform pengelolaan proyek konstruksi digital yang menghubungkan pemilik proyek, penyedia jasa konstruksi, pengawas pihak ketiga, dan administrator dalam satu sistem terintegrasi.
+
+Aplikasi dirancang untuk mengelola seluruh proses kerja sama konstruksi mulai dari:
+
+1. Pembuatan proyek.
+2. Penyusunan kontrak digital.
+3. Kesepakatan kedua belah pihak.
+4. Pengelolaan dana dan pembayaran bertahap.
+5. Pelaksanaan pekerjaan konstruksi.
+6. Monitoring progres.
+7. Upload bukti pekerjaan.
+8. Pemeriksaan oleh pengawas.
+9. Visualisasi model bangunan BIM 3D.
+10. Validasi persyaratan kontrak.
+11. Persetujuan pembayaran.
+12. Pengamanan transaksi menggunakan MFA.
+13. Penyelesaian keberatan dan sengketa.
+14. Pencatatan seluruh aktivitas.
+
+Tujuan utama adalah menciptakan proses kerja sama konstruksi yang lebih transparan, terstruktur, terdokumentasi, dan dapat dipertanggungjawabkan.
+
+## 1.2 Prinsip Utama Sistem
+
+Aplikasi harus dibangun berdasarkan lima prinsip:
+
+- Transparency: seluruh pihak dapat melihat informasi sesuai hak akses.
+- Accountability: setiap tindakan memiliki identitas dan catatan aktivitas.
+- Compliance: pembayaran mengikuti persyaratan kontrak.
+- Security: tindakan penting dilindungi autentikasi dan otorisasi.
+- Automation: sistem membantu menjalankan aturan yang telah disepakati.
+
+PENTING:
+
+Jangan membuat sistem pembayaran yang hanya berdasarkan tombol pencairan.
+
+Setiap pembayaran harus melalui pemeriksaan persyaratan, verifikasi, persetujuan, dan otorisasi sesuai kontrak.
+
+---
+
+# BAGIAN 2 — DESAIN UI/UX
+
+## 2.1 Konsep Visual
+
+Gunakan desain Enterprise SaaS yang profesional.
+
+Referensi:
+- Dashboard konstruksi modern.
+- Platform manajemen proyek internasional.
+- Sistem keuangan perusahaan.
+- Aplikasi monitoring proyek BIM.
+
+Warna:
+- Navy Blue sebagai warna utama.
+- Putih sebagai latar.
+- Biru sebagai warna informasi.
+- Hijau sebagai status berhasil.
+- Kuning sebagai status menunggu.
+- Merah sebagai status gagal atau peringatan.
+
+Tampilan:
+- Sidebar navigasi kiri.
+- Top navigation.
+- Kartu statistik.
+- Grafik progres.
+- Tabel transaksi.
+- Timeline pembayaran.
+- Galeri dokumentasi proyek.
+- Panel informasi.
+- Modal konfirmasi.
+- Responsive desktop, tablet, dan mobile.
+
+Gunakan ikon profesional dan konsisten.
+
+Hindari desain yang terlalu ramai.
+
+## 2.2 Dashboard Eksekutif
+
+Dashboard menampilkan:
+
+KARTU STATISTIK:
+1. Total Proyek.
+2. Proyek Aktif.
+3. Total Kontrak Aktif.
+4. Total Nilai Kontrak.
+5. Total Pembayaran.
+6. Dana Tertahan.
+7. Pembayaran Tertunda.
+8. Proyek Menunggu Verifikasi.
+9. Rata-rata Progres.
+10. Keamanan Sistem.
+
+BAGIAN DASHBOARD:
+
+A. Detail Proyek Utama
+- Foto bangunan.
+- Nama proyek.
+- Nilai kontrak.
+- Tanggal mulai.
+- Target selesai.
+- Penanggung jawab.
+- Persentase progres.
+- Tombol Lihat Detail.
+- Tombol Lihat BIM 3D.
+
+B. Tahap Pembayaran
+- Nama tahapan.
+- Persentase pembayaran.
+- Nilai pembayaran.
+- Status pekerjaan.
+- Status verifikasi.
+- Status pencairan.
+
+C. Grafik Progres
+- Target progres.
+- Realisasi progres.
+- Perkembangan berdasarkan tanggal.
+- Perbandingan target dan realisasi.
+
+D. Riwayat Transaksi
+- Tanggal.
+- Keterangan.
+- Nominal.
+- Status.
+- Nomor referensi transaksi.
+
+E. Aktivitas Terbaru
+- Kontrak disetujui.
+- Bukti pekerjaan diunggah.
+- Pemeriksaan pengawas.
+- Permintaan perbaikan.
+- Persetujuan pembayaran.
+- Transaksi berhasil.
+
+Semua angka harus berasal dari database aplikasi, bukan angka dekoratif.
+
+---
+
+# BAGIAN 3 — ROLE-BASED ACCESS CONTROL
+
+Buat sistem multi-role dengan hak akses terpisah.
+
+## 3.1 Super Admin
+
+Hak akses:
+- Mengelola seluruh pengguna.
+- Mengelola seluruh proyek.
+- Mengelola konfigurasi sistem.
+- Melihat kontrak.
+- Melihat transaksi.
+- Mengelola pengaturan keamanan.
+- Melihat audit log.
+- Mengatur penugasan pengawas.
+- Mengelola data master.
+
+Super Admin tidak boleh sembarangan mengubah persetujuan kontrak atau memalsukan status transaksi.
+
+## 3.2 Pemilik Proyek / Pengguna Jasa
+
+Hak akses:
+- Membuat proyek.
+- Membuat atau meninjau kontrak.
+- Melihat kontrak.
+- Menyetujui kontrak.
+- Melihat progres.
+- Melihat BIM.
+- Melihat bukti pekerjaan.
+- Melihat hasil pemeriksaan.
+- Memberikan persetujuan.
+- Mengajukan keberatan.
+- Memantau dana.
+- Melihat riwayat transaksi.
+
+## 3.3 Penyedia Jasa / Kontraktor
+
+Hak akses:
+- Melihat proyek yang ditugaskan.
+- Melihat kontrak.
+- Melihat tahapan pekerjaan.
+- Mengirim progres.
+- Mengunggah foto.
+- Mengunggah video.
+- Mengunggah dokumen.
+- Mengajukan pekerjaan untuk diperiksa.
+- Melihat hasil pemeriksaan.
+- Mengajukan perbaikan.
+- Melihat status pembayaran.
+
+Kontraktor tidak boleh mencairkan dana secara sepihak.
+
+## 3.4 Pengawas Pihak Ketiga
+
+Buat role khusus bernama PROJECT SUPERVISOR.
+
+Hak akses:
+- Melihat proyek yang ditugaskan.
+- Melihat kontrak sesuai kewenangan.
+- Melihat progres pekerjaan.
+- Melihat foto dan video.
+- Melihat dokumen.
+- Melihat BIM 3D.
+- Memeriksa bukti.
+- Memberikan catatan.
+- Menerima bukti.
+- Menolak bukti.
+- Meminta perbaikan.
+- Mengirim laporan pemeriksaan.
+
+Pengawas tidak boleh:
+- Mengubah nominal kontrak.
+- Mengubah persentase pembayaran.
+- Menghapus bukti pekerjaan.
+- Mencairkan dana.
+- Mengubah kebijakan kontrak secara sepihak.
+
+Kewenangan pengawas dalam memberikan persetujuan akhir harus dapat dikonfigurasi berdasarkan kontrak.
+
+## 3.5 Verifikator Administrasi
+
+Hak akses:
+- Memeriksa kelengkapan dokumen.
+- Memeriksa persyaratan.
+- Memvalidasi data.
+- Memberikan catatan.
+- Melaporkan hasil verifikasi.
+
+Pisahkan verifikasi administratif dengan pemeriksaan teknis konstruksi.
+
+---
+
+# BAGIAN 4 — PROJECT MANAGEMENT
+
+Buat modul manajemen proyek.
+
+Fitur:
+- Tambah proyek.
+- Edit proyek.
+- Detail proyek.
+- Arsip proyek.
+- Pencarian.
+- Filter.
+- Upload foto utama.
+- Upload dokumen.
+- Penentuan pemilik proyek.
+- Penentuan kontraktor.
+- Penentuan pengawas.
+
+Informasi proyek:
+- ID proyek.
+- Nama proyek.
+- Lokasi.
+- Deskripsi.
+- Foto bangunan.
+- Nilai proyek.
+- Tanggal mulai.
+- Target selesai.
+- Pemilik proyek.
+- Kontraktor.
+- Pengawas.
+- Status.
+
+Status:
+- Draft.
+- Menunggu kontrak.
+- Menunggu persetujuan.
+- Kontrak aktif.
+- Dalam pengerjaan.
+- Menunggu verifikasi.
+- Dalam perbaikan.
+- Selesai.
+- Dibatalkan.
+
+Setiap proyek memiliki halaman detail sendiri.
+
+---
+
+# BAGIAN 5 — DIGITAL CONTRACT MANAGEMENT
+
+Buat modul kontrak digital.
+
+Informasi kontrak:
+- Nomor kontrak.
+- ID proyek.
+- Identitas pemilik proyek.
+- Identitas penyedia jasa.
+- Nilai kontrak.
+- Ruang lingkup pekerjaan.
+- Tahapan pekerjaan.
+- Target waktu.
+- Ketentuan pembayaran.
+- Persyaratan verifikasi.
+- Ketentuan keberatan.
+- Ketentuan sengketa.
+- Ketentuan pencairan dana.
+
+Fitur:
+- Membuat kontrak.
+- Melihat kontrak.
+- Mengedit kontrak sebelum disetujui.
+- Persetujuan kedua pihak.
+- Riwayat persetujuan.
+- Riwayat perubahan.
+- Cetak PDF.
+
+Setelah kontrak disetujui:
+- Kontrak memperoleh nomor dan versi.
+- Isi kontrak dikunci dari perubahan sepihak.
+- Perubahan harus melalui mekanisme addendum.
+- Addendum membutuhkan persetujuan pihak terkait.
+- Semua perubahan dicatat.
+
+Sediakan catatan persetujuan berupa:
+- Identitas pengguna.
+- Waktu persetujuan.
+- Versi kontrak.
+- Metode autentikasi.
+- Bukti persetujuan.
+
+---
+
+# BAGIAN 6 — CONTRACT POLICY & RULE ENGINE
+
+Ini merupakan modul inti SmartBuild.
+
+Buat sistem pengaturan kebijakan kontrak yang dapat disesuaikan untuk setiap proyek.
+
+## 6.1 Kebijakan Pemilik Proyek
+
+Contoh:
+- Menyediakan dana sesuai kesepakatan.
+- Menyediakan dokumen proyek.
+- Memeriksa pekerjaan.
+- Memberikan persetujuan sesuai batas waktu.
+- Membayar sesuai ketentuan kontrak.
+
+## 6.2 Kebijakan Kontraktor
+
+Contoh:
+- Mengerjakan proyek sesuai spesifikasi.
+- Menyelesaikan pekerjaan sesuai jadwal.
+- Mengirim laporan progres.
+- Mengunggah bukti pekerjaan.
+- Memperbaiki pekerjaan yang tidak sesuai.
+- Memenuhi persyaratan kontrak.
+
+## 6.3 Kebijakan Pengawas
+
+Contoh:
+- Memeriksa bukti pekerjaan.
+- Melakukan pemeriksaan sesuai kewenangan.
+- Memberikan catatan.
+- Menyampaikan hasil pemeriksaan.
+- Menjaga independensi pemeriksaan.
+
+## 6.4 Pengaturan Aturan Kontrak
+
+Buat konfigurasi:
+- Persyaratan pekerjaan.
+- Persentase progres.
+- Bukti wajib.
+- Dokumen wajib.
+- Persetujuan pengawas.
+- Persetujuan pemilik proyek.
+- Persyaratan pencairan.
+- Batas waktu.
+- Ketentuan perbaikan.
+- Ketentuan sengketa.
+
+Aturan harus dapat berbeda untuk setiap kontrak.
+
+Jangan menanamkan seluruh kebijakan secara hardcoded.
+
+Setiap perubahan kebijakan setelah kontrak aktif harus melalui persetujuan yang sesuai.
+
+Buat versi kebijakan dan riwayat perubahan.
+
+---
+
+# BAGIAN 7 — MILESTONE PAYMENT & ESCROW
+
+Buat modul pembayaran bertahap.
+
+## 7.1 Struktur Pembayaran
+
+Setiap kontrak dapat memiliki beberapa tahap pembayaran.
+
+Contoh simulasi:
+
+Total kontrak: Rp100.000.000.
+
+Tahap 1: Pondasi selesai — 25%.
+Tahap 2: Struktur bangunan — 30%.
+Tahap 3: Dinding dan atap — 25%.
+Tahap 4: Penyelesaian — 20%.
+
+Total harus selalu 100%.
+
+Nilai setiap tahap dihitung berdasarkan persentase kontrak.
+
+## 7.2 Status Pembayaran
+
+- Belum didanai.
+- Menunggu konfirmasi.
+- Dana ditahan.
+- Pekerjaan berlangsung.
+- Menunggu bukti.
+- Menunggu verifikasi.
+- Menunggu persetujuan.
+- Siap diproses.
+- Dalam proses pencairan.
+- Berhasil dicairkan.
+- Ditolak.
+- Ditahan karena sengketa.
+
+## 7.3 Aturan Penguncian Dana
+
+Dana harus tetap terkunci apabila:
+- Persyaratan pekerjaan belum terpenuhi.
+- Bukti pekerjaan belum tersedia.
+- Pemeriksaan belum selesai.
+- Pengawas belum memberikan persetujuan apabila diwajibkan.
+- Pemilik proyek belum memberikan persetujuan apabila diwajibkan.
+- Terdapat sengketa aktif yang menghalangi pencairan.
+- MFA belum berhasil.
+- Transaksi belum mendapatkan otorisasi yang diperlukan.
+
+Jangan mengizinkan perubahan status pembayaran secara langsung tanpa memeriksa semua persyaratan.
+
+## 7.4 Escrow
+
+Untuk tahap DEMO:
+- Buat simulasi dana ditahan.
+- Buat simulasi dana dicairkan.
+- Tampilkan saldo dana.
+- Tampilkan status.
+- Tampilkan riwayat transaksi.
+
+Untuk tahap PRODUKSI:
+- Siapkan integrasi dengan penyedia Escrow atau layanan pembayaran yang sesuai.
+- Gunakan mekanisme server-side.
+- Verifikasi status transaksi melalui mekanisme resmi penyedia layanan.
+- Terapkan idempotency agar transaksi tidak diproses dua kali.
+- Simpan referensi transaksi.
+
+Jangan mengklaim dana sungguhan telah dititipkan apabila belum terhubung dengan layanan yang benar-benar mengelola dana.
+
+---
+
+# BAGIAN 8 — MFA SECURITY
+
+Buat modul Multi-Factor Authentication.
+
+MFA diperlukan untuk:
+- Persetujuan kontrak.
+- Addendum kontrak.
+- Perubahan informasi pembayaran.
+- Persetujuan pembayaran.
+- Otorisasi pencairan.
+- Tindakan administrasi kritis.
+
+Fitur:
+- Verifikasi OTP.
+- Masa berlaku OTP.
+- Pembatasan percobaan.
+- Pengiriman ulang.
+- Catatan autentikasi.
+- Riwayat aktivitas.
+- Pengelolaan perangkat atau metode autentikasi.
+
+Gunakan layanan autentikasi yang benar-benar berfungsi.
+
+OTP harus diverifikasi di backend.
+
+Jangan menyimpan OTP dalam log biasa.
+
+Jangan menampilkan secret key kepada pengguna.
+
+Jangan menganggap login biasa sudah sama dengan MFA.
+
+Untuk tahap produksi, siapkan metode MFA yang sesuai dengan tingkat risiko, seperti TOTP atau metode autentikasi kuat lainnya.
+
+---
+
+# BAGIAN 9 — DIGITAL EVIDENCE MANAGEMENT
+
+Buat sistem pengumpulan bukti pekerjaan.
+
+## 9.1 Jenis File
+
+- JPG.
+- JPEG.
+- PNG.
+- MP4.
+- PDF.
+- Dokumen pendukung.
+
+## 9.2 Data Bukti
+
+Setiap bukti memiliki:
+- ID bukti.
+- ID proyek.
+- ID kontrak.
+- Tahapan pekerjaan.
+- Nama pengunggah.
+- Tanggal dan waktu.
+- Deskripsi.
+- Lokasi jika diperlukan.
+- File.
+- Status pemeriksaan.
+
+## 9.3 Fitur
+
+- Upload foto.
+- Upload video.
+- Upload dokumen.
+- Preview foto.
+- Preview video.
+- Download sesuai hak akses.
+- Galeri dokumentasi.
+- Filter berdasarkan tahap.
+- Riwayat bukti.
+- Catatan pemeriksaan.
+
+File harus disimpan dalam penyimpanan yang aman.
+
+Gunakan validasi jenis file, ukuran file, dan kontrol akses.
+
+Jangan menjadikan seluruh dokumen kontrak dan bukti pekerjaan dapat diakses publik tanpa autentikasi.
+
+---
+
+# BAGIAN 10 — THIRD-PARTY INSPECTION
+
+Buat halaman khusus untuk pengawas proyek.
+
+Dashboard pengawas menampilkan:
+- Proyek yang ditugaskan.
+- Pekerjaan menunggu pemeriksaan.
+- Bukti yang telah diperiksa.
+- Bukti ditolak.
+- Pekerjaan memerlukan perbaikan.
+- Laporan pemeriksaan.
+
+Alur pemeriksaan:
+
+1. Kontraktor mengirim bukti.
+2. Sistem menerima dan mencatat bukti.
+3. Pengawas menerima notifikasi.
+4. Pengawas membuka bukti.
+5. Pengawas melihat foto, video, dan dokumen.
+6. Pengawas melihat model BIM jika tersedia.
+7. Pengawas memberikan hasil pemeriksaan.
+8. Pengawas menerima, menolak, atau meminta perbaikan.
+9. Sistem menyimpan hasil pemeriksaan.
+10. Pihak terkait menerima notifikasi.
+
+Sediakan kolom:
+- Hasil pemeriksaan.
+- Catatan.
+- Rekomendasi.
+- Tanggal pemeriksaan.
+- Identitas pengawas.
+- Lampiran laporan.
+
+Status:
+- Menunggu pemeriksaan.
+- Sedang diperiksa.
+- Diterima.
+- Ditolak.
+- Perlu perbaikan.
+- Pemeriksaan ulang.
+- Selesai.
+
+Penting:
+AI tidak boleh menjadi satu-satunya pihak yang menyatakan pekerjaan konstruksi aman atau sesuai standar teknis.
+
+Pemeriksaan teknis harus dilakukan oleh tenaga yang memiliki kewenangan dan kompetensi sesuai kebutuhan proyek.
+
+---
+
+# BAGIAN 11 — BIM 3D VIEWER
+
+Buat modul visualisasi bangunan 3D.
+
+Setiap proyek memiliki:
+- Foto bangunan.
+- Gambar pendukung.
+- Model BIM.
+- Informasi model.
+- Riwayat versi model.
+
+## 11.1 Format File
+
+Prioritaskan:
+- GLB.
+- glTF.
+
+Siapkan dukungan lanjutan:
+- IFC.
+- RVT melalui proses konversi atau layanan khusus.
+
+## 11.2 Fitur Viewer
+
+- Menampilkan model 3D.
+- Rotate 360 derajat.
+- Zoom in.
+- Zoom out.
+- Pan.
+- Reset kamera.
+- Fullscreen.
+- Pemilihan objek.
+- Informasi elemen.
+- Pengelolaan versi model.
+
+Jika model memiliki informasi objek, tampilkan:
+- Nama objek.
+- Jenis objek.
+- Material.
+- Ukuran.
+- Kategori.
+- Informasi teknis yang tersedia.
+
+## 11.3 Integrasi dengan Progres
+
+Hubungkan model BIM dengan tahapan pekerjaan.
+
+Contoh:
+- Tahap pondasi.
+- Tahap struktur.
+- Tahap dinding.
+- Tahap atap.
+- Tahap finishing.
+
+Sediakan fitur untuk membuka model berdasarkan proyek dan versi.
+
+Jangan mengklaim bahwa sistem dapat mendeteksi kesesuaian konstruksi otomatis hanya dengan menampilkan model 3D.
+
+Fitur perbandingan BIM dengan kondisi aktual memerlukan pengembangan khusus.
+
+---
+
+# BAGIAN 12 — PROGRESS MONITORING
+
+Buat sistem monitoring pekerjaan.
+
+Contoh tahapan:
+1. Persiapan.
+2. Pondasi.
+3. Struktur.
+4. Dinding.
+5. Atap.
+6. Instalasi.
+7. Finishing.
+8. Pemeriksaan akhir.
+
+Setiap tahap mempunyai:
+- Target progres.
+- Realisasi.
+- Bobot pekerjaan.
+- Tanggal mulai.
+- Target selesai.
+- Penanggung jawab.
+- Bukti.
+- Status verifikasi.
+
+Hitung progres keseluruhan berdasarkan bobot pekerjaan.
+
+Rumus:
+
+Progres keseluruhan = jumlah dari (progres setiap tahap × bobot tahap).
+
+Pastikan total bobot tahapan 100%.
+
+Tampilkan:
+- Progress bar.
+- Grafik perkembangan.
+- Target versus realisasi.
+- Pekerjaan terlambat.
+- Pekerjaan selesai.
+- Pekerjaan menunggu verifikasi.
+
+---
+
+# BAGIAN 13 — AUTOMATED COMPLIANCE
+
+Buat mesin pemeriksaan persyaratan.
+
+Sistem memeriksa:
+- Apakah pekerjaan sudah selesai.
+- Apakah bukti sudah tersedia.
+- Apakah dokumen lengkap.
+- Apakah verifikasi sudah dilakukan.
+- Apakah persetujuan sudah tersedia.
+- Apakah ada sengketa aktif.
+- Apakah persyaratan pembayaran sudah dipenuhi.
+
+Hasil pemeriksaan:
+- Memenuhi persyaratan.
+- Belum memenuhi persyaratan.
+- Menunggu pemeriksaan manusia.
+- Terhalang sengketa.
+
+Sistem harus memberikan alasan jika persyaratan belum terpenuhi.
+
+Jangan hanya menampilkan status merah atau hijau tanpa penjelasan.
+
+---
+
+# BAGIAN 14 — WORKFLOW SMART CONTRACT H0-H200
+
+Implementasikan alur berdasarkan diagram konsep yang diberikan klien.
+
+H0:
+Pengguna jasa menyetorkan dana ke Smart Contract.
+
+H0 sampai H180:
+Periode pelaksanaan pekerjaan.
+
+Maksimal H180:
+Penilaian bukti digital.
+
+H180 sampai H185:
+Proses validasi.
+
+CABANG A: SYARAT TERPENUHI
+
+Kedua pihak menyetujui:
+- H188: proses pencairan dana sesuai ketentuan.
+
+Salah satu pihak tidak menyetujui:
+- Dilakukan pembuktian ketidaksesuaian terhadap kontrak awal.
+
+Jika terbukti:
+- H190: hasil pembuktian.
+- H195: perbaikan dan validasi bukti.
+- H200: proses pencairan sesuai ketentuan.
+
+Jika tidak terbukti:
+- H195: proses pencairan sesuai ketentuan.
+
+CABANG B: SYARAT TIDAK TERPENUHI
+
+- H185.
+- Dana tetap tertahan.
+- Pencairan tidak dilakukan sampai persyaratan terpenuhi sesuai aturan.
+
+PENTING:
+
+Angka H0, H180, H185, H188, H190, H195, dan H200 harus dapat dikonfigurasi.
+
+Jangan menafsirkan H sebagai jam atau hari kalender sebelum dikonfirmasi klien.
+
+Jangan mengubah alur keputusan dari diagram tanpa persetujuan pemilik kebijakan.
+
+Implementasikan menggunakan state machine.
+
+---
+
+# BAGIAN 15 — DISPUTE MANAGEMENT
+
+Buat modul penyelesaian perselisihan.
+
+Fitur:
+- Mengajukan keberatan.
+- Menyampaikan alasan.
+- Mengunggah bukti.
+- Memberikan tanggapan.
+- Pemeriksaan oleh pihak berwenang.
+- Keputusan.
+- Riwayat penyelesaian.
+
+Status:
+- Tidak ada sengketa.
+- Sengketa diajukan.
+- Menunggu bukti.
+- Dalam pemeriksaan.
+- Terbukti.
+- Tidak terbukti.
+- Menunggu perbaikan.
+- Selesai.
+
+Jika terdapat sengketa yang menurut kontrak menghalangi pembayaran, sistem harus menahan proses pencairan.
+
+Keputusan harus mencatat pihak yang berwenang dan dasar keputusan.
+
+---
+
+# BAGIAN 16 — PAYMENT MANAGEMENT
+
+Buat halaman pembayaran.
+
+Informasi:
+- Nomor transaksi.
+- Nomor kontrak.
+- Proyek.
+- Tahapan.
+- Nominal.
+- Tanggal.
+- Penerima.
+- Status.
+- Referensi transaksi.
+
+Fitur:
+- Detail pembayaran.
+- Riwayat pembayaran.
+- Bukti pembayaran.
+- Filter.
+- Ekspor laporan.
+- Rekap dana tertahan.
+- Rekap dana dicairkan.
+
+Bedakan:
+- Status persetujuan.
+- Status otorisasi.
+- Status transaksi pembayaran.
+
+Ketiganya tidak boleh disamakan.
+
+---
+
+# BAGIAN 17 — BLOCKCHAIN INTEGRATION
+
+Siapkan arsitektur untuk integrasi Blockchain.
+
+Data yang diperlukan:
+- Network.
+- Chain ID.
+- Wallet address.
+- Smart Contract address.
+- Transaction hash.
+- Status transaksi.
+- Waktu transaksi.
+- Referensi kontrak.
+
+Untuk DEMO:
+Gunakan simulasi transaksi.
+
+Untuk PRODUKSI:
+- Gunakan jaringan yang telah ditentukan klien.
+- Siapkan smart contract.
+- Lakukan pengujian.
+- Lakukan audit keamanan.
+- Siapkan pengelolaan wallet.
+- Siapkan monitoring transaksi.
+
+Jangan pernah menampilkan transaksi simulasi sebagai transaksi Blockchain sungguhan.
+
+Jangan menyimpan private key di frontend.
+
+Jangan melakukan deployment kontrak ke jaringan produksi tanpa persetujuan dan pengujian.
+
+---
+
+# BAGIAN 18 — NOTIFICATION CENTER
+
+Buat sistem notifikasi untuk:
+
+- Kontrak baru.
+- Persetujuan kontrak.
+- Perubahan kontrak.
+- Proyek dimulai.
+- Bukti pekerjaan dikirim.
+- Pengawas mendapat tugas.
+- Hasil pemeriksaan.
+- Permintaan perbaikan.
+- Sengketa.
+- Pembayaran tertunda.
+- MFA.
+- Pencairan.
+- Transaksi berhasil.
+
+Sediakan notifikasi dalam aplikasi dan siapkan integrasi email.
+
+---
+
+# BAGIAN 19 — AUDIT TRAIL
+
+Setiap tindakan penting harus memiliki catatan.
+
+Data:
+- User ID.
+- Nama pengguna.
+- Role.
+- Aktivitas.
+- Waktu.
+- ID proyek.
+- ID kontrak.
+- Status sebelum.
+- Status sesudah.
+- IP atau informasi sesi jika sesuai kebijakan privasi.
+
+Catat:
+- Persetujuan kontrak.
+- Perubahan kontrak.
+- Upload bukti.
+- Pemeriksaan pengawas.
+- Perubahan kebijakan.
+- Persetujuan pembayaran.
+- Otorisasi MFA.
+- Pencairan.
+- Keputusan sengketa.
+
+Audit log harus terlindungi dari pengubahan atau penghapusan oleh pengguna biasa.
+
+Untuk produksi, siapkan mekanisme penyimpanan audit yang tahan manipulasi dan memiliki pencadangan.
+
+---
+
+# BAGIAN 20 — LAPORAN
+
+Buat modul laporan:
+
+1. Laporan proyek.
+2. Laporan progres.
+3. Laporan kontrak.
+4. Laporan bukti pekerjaan.
+5. Laporan pengawasan.
+6. Laporan verifikasi.
+7. Laporan pembayaran.
+8. Laporan dana tertahan.
+9. Laporan sengketa.
+10. Laporan aktivitas.
+
+Sediakan:
+- Filter tanggal.
+- Filter proyek.
+- Filter pengguna.
+- Filter status.
+- Ekspor PDF.
+- Ekspor Excel jika memungkinkan.
+
+---
+
+# BAGIAN 21 — DATABASE DESIGN
+
+Rancang database relasional atau struktur database terintegrasi.
+
+Entitas minimal:
+
+1. users
+2. roles
+3. permissions
+4. projects
+5. project_members
+6. contracts
+7. contract_versions
+8. contract_policies
+9. contract_rules
+10. contract_approvals
+11. project_milestones
+12. progress_updates
+13. evidence_files
+14. inspections
+15. inspection_comments
+16. bim_models
+17. bim_model_versions
+18. payment_schedules
+19. escrow_records
+20. payment_requests
+21. payment_transactions
+22. disputes
+23. dispute_evidence
+24. mfa_records
+25. notifications
+26. audit_logs
+
+Pastikan hubungan antarentitas dirancang dengan benar.
+
+Gunakan ID unik.
+
+Terapkan validasi integritas data.
+
+Jangan mencampur data proyek yang berbeda.
+
+Pastikan pengguna hanya dapat mengakses data sesuai kewenangannya.
+
+---
+
+# BAGIAN 22 — ARSITEKTUR TEKNIS
+
+Gunakan arsitektur modular.
+
+Frontend:
+- React.
+- TypeScript.
+- Responsive UI.
+- Komponen reusable.
+
+Backend:
+- Node.js.
+- API.
+- Validasi server-side.
+- Business logic.
+- State machine.
+
+Database:
+- Gunakan Firebase/Firestore atau database terstruktur lain sesuai kebutuhan.
+- Pastikan keamanan akses.
+- Pastikan konsistensi transaksi.
+
+Authentication:
+- Sistem login.
+- Role-based access.
+- MFA.
+
+File storage:
+- Penyimpanan foto.
+- Video.
+- PDF.
+- Model BIM.
+
+BIM:
+- Three.js atau viewer 3D yang sesuai.
+- GLB/glTF sebagai format awal.
+
+Integrasi:
+- Payment provider.
+- Escrow provider.
+- Blockchain.
+- Email/OTP.
+
+Jangan menyimpan kredensial rahasia di frontend.
+
+Gunakan environment variables dan server-side secrets.
+
+Jangan mengasumsikan integrasi eksternal sudah aktif sebelum kredensial dan layanannya tersedia.
+
+---
+
+# BAGIAN 23 — DATA DEMO
+
+Buat data simulasi:
+
+Proyek 1:
+Pembangunan Gedung Aula.
+Nilai kontrak: Rp450.000.000.
+Progres: 60%.
+Status: Aktif.
+
+Proyek 2:
+Renovasi Kantor Pusat.
+Nilai kontrak: Rp240.000.000.
+Progres: 90%.
+Status: Menunggu Verifikasi.
+
+Proyek 3:
+Pembangunan Rumah Tinggal.
+Nilai kontrak: Rp100.000.000.
+Progres: 100%.
+Status: Selesai.
+
+Total nilai kontrak: Rp790.000.000.
+
+Buat data pembayaran, bukti pekerjaan, dan riwayat aktivitas yang konsisten.
+
+Semua data simulasi wajib memiliki label DEMO.
+
+Jangan menghubungkan data demo dengan rekening atau transaksi nyata.
+
+---
+
+# BAGIAN 24 — SIDEBAR NAVIGATION
+
+Urutan menu:
+
+1. Dashboard.
+2. Proyek Saya.
+3. Kontrak Digital.
+4. Kebijakan Kontrak.
+5. Progress Proyek.
+6. BIM Viewer.
+7. Digital Evidence.
+8. Pengawasan Proyek.
+9. Verifikasi Pekerjaan.
+10. Milestone Payment.
+11. Escrow Management.
+12. Pembayaran.
+13. Sengketa.
+14. Riwayat Transaksi.
+15. Laporan.
+16. Notifikasi.
+17. Pengguna.
+18. Keamanan & MFA.
+19. Audit Log.
+20. Pengaturan.
+
+Menu harus menyesuaikan role pengguna.
+
+---
+
+# BAGIAN 25 — TESTING & QUALITY ASSURANCE
+
+Lakukan pengujian:
+
+A. Authentication:
+- Login.
+- Logout.
+- Hak akses.
+- MFA.
+
+B. Project:
+- Tambah.
+- Edit.
+- Detail.
+- Relasi pengguna.
+
+C. Contract:
+- Pembuatan.
+- Persetujuan.
+- Addendum.
+- Riwayat.
+
+D. Evidence:
+- Upload.
+- Preview.
+- Pemeriksaan.
+- Penolakan.
+- Perbaikan.
+
+E. Supervisor:
+- Penugasan.
+- Pemeriksaan.
+- Laporan.
+
+F. Payment:
+- Perhitungan persentase.
+- Persyaratan.
+- Penguncian.
+- Persetujuan.
+- Otorisasi.
+- Simulasi transaksi.
+
+G. BIM:
+- Upload GLB.
+- Viewer.
+- Zoom.
+- Rotate.
+- Model tidak ditemukan.
+- File tidak valid.
+
+H. Security:
+- Akses tanpa izin.
+- Manipulasi request.
+- Pengulangan transaksi.
+- Percobaan OTP.
+- Akses file.
+- Audit log.
+
+Buat skenario pengujian khusus:
+
+Jika kontraktor mengunggah bukti tetapi pengawas menolak, dana tidak boleh dicairkan.
+
+Jika pengawas menerima bukti tetapi persetujuan pemilik proyek belum ada, dana tetap tertahan apabila persetujuan tersebut diwajibkan.
+
+Jika seluruh persyaratan terpenuhi tetapi MFA gagal, pencairan tidak boleh diproses.
+
+Jika terjadi sengketa yang menghalangi pembayaran, dana tetap tertahan.
+
+Jika transaksi pembayaran telah berhasil, permintaan yang sama tidak boleh memproses pencairan kedua kali.
+
+---
+
+# BAGIAN 26 — TAHAP PENGEMBANGAN
+
+TAHAP 1:
+- Desain aplikasi.
+- Dashboard.
+- Login.
+- Multi-role.
+- Project management.
+- Contract management.
+
+TAHAP 2:
+- Contract policy.
+- Monitoring progres.
+- Digital evidence.
+- Supervisor.
+- Verifikasi.
+
+TAHAP 3:
+- Milestone payment.
+- Escrow simulation.
+- MFA.
+- Automated compliance.
+- Dispute management.
+
+TAHAP 4:
+- BIM Viewer.
+- Upload model 3D.
+- Riwayat model.
+- Integrasi BIM lanjutan.
+
+TAHAP 5:
+- Blockchain integration.
+- Payment provider.
+- Escrow produksi.
+- Pengujian keamanan.
+- Deployment.
+
+---
+
+# BAGIAN 27 — INSTRUKSI KHUSUS UNTUK AI DEVELOPER
+
+Anda bertindak sebagai:
+- Senior Full-Stack Developer.
+- System Architect.
+- UI/UX Designer.
+- Database Engineer.
+- Security Engineer.
+- QA Engineer.
+
+Bangun SmartBuild berdasarkan seluruh kebutuhan di atas.
+
+Jangan hanya membuat tampilan visual.
+
+Buat aplikasi yang memiliki fungsi nyata dan data yang saling terhubung.
+
+Jangan menghilangkan modul yang sudah ditentukan.
+
+Jangan membuat tombol dekoratif.
+
+Jangan membuat status pembayaran yang dapat diubah langsung tanpa validasi.
+
+Jangan membuat fitur keamanan palsu.
+
+Jangan membuat data transaksi palsu terlihat seperti transaksi sungguhan.
+
+Prioritaskan konsistensi data, keamanan, kemudahan penggunaan, dan ketepatan alur bisnis.
+
+Mulailah dengan menganalisis seluruh PRD.
+
+Kemudian:
+1. Susun arsitektur.
+2. Susun struktur database.
+3. Susun hak akses.
+4. Susun workflow.
+5. Bangun desain dashboard.
+6. Bangun modul secara bertahap.
+7. Uji setiap modul.
+8. Dokumentasikan fitur yang sudah berfungsi dan yang masih membutuhkan integrasi.
+
+Jangan mengerjakan semua modul sekaligus apabila dapat mengakibatkan struktur aplikasi tidak stabil.
+
+Setiap tahap harus tetap kompatibel dengan tahap berikutnya.
+
+HASIL AKHIR:
+
+Sebuah aplikasi SmartBuild yang memiliki dashboard profesional, manajemen proyek, kontrak digital, kebijakan kedua pihak, monitoring progres, BIM Viewer, upload bukti, pengawasan pihak ketiga, MFA, penguncian pembayaran, dan simulasi alur Smart Contract.
+
+Aplikasi harus siap diuji dalam mode DEMO serta memiliki arsitektur yang dapat dikembangkan menuju produksi.
